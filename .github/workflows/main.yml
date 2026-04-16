@@ -58,3 +58,8 @@ jobs:
         id: sync-files-to-s3
         run: |
           aws s3 sync ./dist s3://widget-web-lv-cdn --delete --exclude '.*git*'
+
+      - name: Invalidate CDN cache
+        id: invalidate-dn-cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id 'E3O53AKLYY5566' --paths "/*"
