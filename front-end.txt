@@ -1,0 +1,3 @@
+Cloudfront - entrega de conteudo para o cliente com baixa latencia
+
+S3 - Gerenciar objetos

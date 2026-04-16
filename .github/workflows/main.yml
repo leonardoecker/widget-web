@@ -48,7 +48,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: Sync files to S3
+      #- name: Sync files to S3
+      #  id: sync-files-to-s3
+      #  run: |
+      #    aws s3 sync ${{ env.SOURCE_DIST }} s3://${{ env.AWS_S3_BUCKET }} --delete --exclude '.*git*'
+      #
+
+      - name: Sync files to CDN
         id: sync-files-to-s3
         run: |
-          aws s3 sync ${{ env.SOURCE_DIST }} s3://${{ env.AWS_S3_BUCKET }} --delete --exclude '.*git*'
+          aws s3 sync ./dist s3://widget-web-lv-cdn --delete --exclude '.*git*'
