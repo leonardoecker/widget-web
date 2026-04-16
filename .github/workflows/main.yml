@@ -54,11 +54,13 @@ jobs:
       #    aws s3 sync ${{ env.SOURCE_DIST }} s3://${{ env.AWS_S3_BUCKET }} --delete --exclude '.*git*'
       #
 
+      # Atualiza o objeto no s3
       - name: Sync files to CDN
         id: sync-files-to-s3
         run: |
           aws s3 sync ./dist s3://widget-web-lv-cdn --delete --exclude '.*git*'
 
+      # Invalida o cache no cloudfront
       - name: Invalidate CDN cache
         id: invalidate-dn-cache
         run: |
